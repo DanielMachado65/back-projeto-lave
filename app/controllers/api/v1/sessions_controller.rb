@@ -18,6 +18,7 @@ class Api::V1::SessionsController < Api::V1::ApiController
   end
 
   # ----------------------------- User
+
   protected
 
   def set_user
