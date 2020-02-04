@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
-  post 'login', to: 'users#show'
-  post 'create', to: 'users#create'
+  namespace :api do
+    namespace :v1 do
+
+      resources :users, only: %I[create destroy show update]
+
+      post '/login', to: 'sessions#login'
+      post '/logout', to: 'sessions#destroy'
+    end
+  end
 end
