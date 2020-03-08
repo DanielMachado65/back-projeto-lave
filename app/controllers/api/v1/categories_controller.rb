@@ -10,9 +10,7 @@ class Api::V1::CategoriesController < Api::V1::ApiController
   end
 
   def show
-    api_error('ocorreu algum erro') if @category.nil?
-
-    api_success(@category)
+    @category.nil? ? api_error('ocorreu algum erro') : api_success(@category)
   end
 
   def create
@@ -32,9 +30,7 @@ class Api::V1::CategoriesController < Api::V1::ApiController
   end
 
   def destroy
-    return api_error('não pode ser excluido') if @category.nil?
-
-    api_success(@category.destroy)
+    @category.nil? ? api_error('não pode ser excluido') : api_success(@category.destroy)
   end
 
   private
