@@ -1,0 +1,11 @@
+# rails
+DB_NAME:             "back_lave_db"
+DB_USER:             "root"
+DB_PASSWORD:         "#Dani2005"
+DB_HOST:             "localhost"
+
+# mysql
+MYSQL_ROOT_PASSWORD: "#Dani2005"
+MYSQL_DATABASE:      "back_lave_db"
+MYSQL_USER:          "root"
+MYSQL_PASSWORD:      "#Dani2005"
