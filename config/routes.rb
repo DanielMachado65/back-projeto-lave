@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   resources :products
-  resources :categories
   resources :establishments
   resources :addresses
   resources :orders
@@ -8,6 +7,7 @@ Rails.application.routes.draw do
     namespace :v1 do
 
       resources :users, only: %I[create destroy show update]
+      resources :categories
 
       post '/login', to: 'sessions#login'
       post '/logout', to: 'sessions#destroy'

@@ -10,7 +10,6 @@ class Api::V1::UsersController < Api::V1::ApiController
 
   def create
     if params[:user].present?
-      binding.pry
       user = Api::V1::UserService.create(params)
       return api_bad_request(user[:error]) if user[:code] == 400
 
