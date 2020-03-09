@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c13ab910-9e66-48cb-8bba-7015b1b66920" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/services/api/v1/address_service.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/services/api/v1/establishment_service.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/addresses_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/v1/addresses_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/api/v1/categories_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/v1/categories_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/api/v1/addresses_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/v1/addresses_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/establishments_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/v1/establishments_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/address.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/address.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/establishments/_establishment.json.jbuilder" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/establishments/_establishment.json.jbuilder" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,11 +48,6 @@
         <option value="$PROJECT_DIR$/.idea/vcs.xml" />
       </list>
     </option>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
-    <option name="x" value="-1440" />
-    <option name="width" value="1440" />
-    <option name="height" value="900" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
@@ -126,13 +123,13 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="205" y="31" key="SettingsEditor/67.27.1299.741@67.27.1299.741" timestamp="1583681737229" />
-    <state x="380" y="175" key="run.anything.popup" timestamp="1583689905723">
+    <state x="380" y="175" key="run.anything.popup" timestamp="1583712857475">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="380" y="175" key="run.anything.popup/67.27.1299.741@67.27.1299.741" timestamp="1583689905723" />
-    <state x="380" y="42" width="672" height="676" key="search.everywhere.popup" timestamp="1583691639684">
+    <state x="380" y="175" key="run.anything.popup/67.27.1299.741@67.27.1299.741" timestamp="1583712857475" />
+    <state x="380" y="42" width="672" height="676" key="search.everywhere.popup" timestamp="1583713074918">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="380" y="42" width="672" height="676" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1583691639684" />
+    <state x="380" y="42" width="672" height="676" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1583713074918" />
   </component>
 </project>

@@ -7,6 +7,9 @@ class User < ApplicationRecord
   # callback
   before_save {self.email = email.downcase}
 
+  # relationships
+  has_many :establishments
+
   # login
   def self.login(user, password)
     find_by(email: user, password: password).presence

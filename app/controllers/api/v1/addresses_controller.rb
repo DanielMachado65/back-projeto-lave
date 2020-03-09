@@ -5,7 +5,8 @@ class Api::V1::AddressesController < Api::V1::ApiController
   before_action :set_address, only: %I[show update destroy]
 
   def index
-    @address = Address.all
+    @addresses = Address.all
+    @addresses.nil? ? api_error('ocorreu algum erro') : api_success(@addresses)
   end
 
   def show
