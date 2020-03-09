@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :products
   resources :orders
 
   namespace :api do
@@ -9,6 +8,7 @@ Rails.application.routes.draw do
       resources :categories
       resources :addresses
       resources :establishments
+      resources :products, expect: :index
 
       post '/login', to: 'sessions#login'
       post '/logout', to: 'sessions#destroy'

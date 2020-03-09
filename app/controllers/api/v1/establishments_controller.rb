@@ -5,8 +5,8 @@ class Api::V1::EstablishmentsController < Api::V1::ApiController
   before_action :set_establishment, only: %I[show update destroy]
 
   def index
-    @establishment = Establishment.all
-    @establishment.nil? ? api_error('ocorreu algum erro') : api_success(@establishment)
+    @establishments = Establishment.all
+    @establishments.nil? ? api_error('ocorreu algum erro') : api_success(@establishments)
   end
 
   def show
