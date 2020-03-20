@@ -33,10 +33,12 @@ module Api
     end
 
     def self.create_product(attrs)
-      @product = Product.create(attrs.except(:category, :establishment))
-      return { code: 400, error: @product.errors.as_json} if @product.errors.present?
+      @product = Product.new(attrs.except(:category, :establishment))
+      @product.category = Category.find_by(id: attrs[:category])
+      @product.establishment = Establishment.find_by(id: attrs[:establishment])
 
-      @product
+      return @product if @product.save
+      { code: 400, error: @product.errors.as_json}
     end
 
     def self.update_product(category, attrs)
