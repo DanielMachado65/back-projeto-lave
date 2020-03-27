@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_09_210917) do
+ActiveRecord::Schema.define(version: 2020_10_09_210919) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "street"
@@ -50,10 +50,18 @@ ActiveRecord::Schema.define(version: 2020_10_09_210917) do
   end
 
   create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "dealine"
-    t.string "status"
+    t.datetime "deadline"
+    t.float "total"
+    t.string "payment_type"
+    t.string "order_hash"
+    t.bigint "address_id"
+    t.bigint "user_id"
+    t.bigint "establishment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_orders_on_address_id"
+    t.index ["establishment_id"], name: "index_orders_on_establishment_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -85,6 +93,9 @@ ActiveRecord::Schema.define(version: 2020_10_09_210917) do
 
   add_foreign_key "establishments", "addresses"
   add_foreign_key "establishments", "users"
+  add_foreign_key "orders", "addresses"
+  add_foreign_key "orders", "establishments"
+  add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "establishments"
 end

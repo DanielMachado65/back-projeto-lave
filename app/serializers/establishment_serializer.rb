@@ -1,11 +1,7 @@
 class EstablishmentSerializer < ActiveModel::Serializer
-  attributes :name, :fantasy_name, :has_delivery, :phone, :address, :user
+  attributes :name, :fantasy_name, :has_delivery, :phone
 
-  def address
-    object.address.as_json(except: [:id, :created_at, :updated_at])
-  end
+  has_one :address
+  has_one :user
 
-  def user
-    object.user.as_json(only: [:name, :email, :telephone])
-  end
 end

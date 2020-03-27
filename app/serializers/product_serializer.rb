@@ -1,11 +1,6 @@
 class ProductSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description,:price, :is_active,:establishment, :category
+  attributes :id, :name, :description,:price, :is_active
 
-  def establishment
-    object.establishment.as_json(except: %I[id created_at updated_at])
-  end
-
-  def category
-    object.category.as_json(except: %I[id created_at updated_at])
-  end
+  has_one :establishment
+  has_one :category
 end

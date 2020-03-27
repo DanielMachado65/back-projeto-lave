@@ -1,9 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  dealine: MyString
-  status: MyString
+  deadline: 2020-03-26 21:29:51
+  total: 1.5
+  payment_type: MyString
+  order_hash: MyString
+  address: one
+  user: one
+  establishment: one
 
 two:
-  dealine: MyString
-  status: MyString
+  deadline: 2020-03-26 21:29:51
+  total: 1.5
+  payment_type: MyString
+  order_hash: MyString
+  address: two
+  user: two
+  establishment: two
