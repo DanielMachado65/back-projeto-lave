@@ -5,17 +5,17 @@ module Api
       Order.find_by(id: params[:id]) if params[:id].present?
     end
 
-    def self.create(attrs = {})
-      params = product_params(attrs)
+    def self.create(attrs, user)
+      params = order_params(attrs)
       return {code: 400, error: error} unless params.permitted?
 
-      create_product(params)
+      create_product(params, user)
     rescue StandardError => e
       {code: 400, error: e.message}
     end
 
     def self.update(order, attrs = {})
-      params = product_params(attrs)
+      params = order_params(attrs)
       return {code: 400, error: error} unless params.permitted?
 
       return order if update_product(order, params)
@@ -25,15 +25,16 @@ module Api
       {code: 400, error: e.message}
     end
 
-    private_class_method def self.product_params(params)
-      params.require(:order).permit(:deadline, :total, :payment_type,
-                                    :order_hash, :address, :user,
-                                    :establishment)
+    private_class_method def self.order_params(params)
+      params.require(:order).permit(:deadline, :total, :payment_type, :establishment)
     end
 
-    private_class_method def self.create_product(attrs)
-      @order = Product.new(attrs.except(:category, :establishment))
-      @order.category = Category.find_by(id: attrs[:category])
+    private_class_method def self.create_product(attrs, user)
+      @order = Order.new(attrs.except(:establishment))
+
+      binding.pry
+      @order.user = user
+      @order.address = user.address
       @order.establishment = Establishment.find_by(id: attrs[:establishment])
 
       return @order if @order.save

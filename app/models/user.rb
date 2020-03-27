@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   # relationships
   has_many :establishments
+  belongs_to :address, optional: true
 
   # login
   def self.login(user, password)

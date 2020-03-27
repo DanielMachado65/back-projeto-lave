@@ -9,6 +9,12 @@ class Api::V1::ApiController < ActionController::Base
     @current_user ||= authenticate_token
   end
 
+  def api_return_success(service, created=false)
+    return api_bad_request(service[:error]) if service[:code] == 400
+
+    created ? api_created(service) : api_success(service)
+  end
+
   protected
 
   # --------------------------- login

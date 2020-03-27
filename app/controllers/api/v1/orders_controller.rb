@@ -9,7 +9,7 @@ class Api::V1::OrdersController < Api::V1::ApiController
   end
 
   def create
-    order = Api::V1::ProductService.create(params)
+    order = Api::V1::OrderService.create(params, current_user)
     return api_bad_request(order[:error]) if order[:code] == 400
 
     api_created(order)
@@ -18,7 +18,7 @@ class Api::V1::OrdersController < Api::V1::ApiController
   def update
     return api_error('não foi encontrado o produto') if @order.nil?
 
-    order = Api::V1::ProductService.update(@order, params)
+    order = Api::V1::OrderService.update(@order, params)
     return api_bad_request(order[:error]) if order[:code] == 400
 
     api_success(order)
@@ -31,6 +31,6 @@ class Api::V1::OrdersController < Api::V1::ApiController
   private
 
   def set_product
-    @order = Api::V1::ProductService.find(params)
+    @order = Api::V1::OrderService.find(params)
   end
 end

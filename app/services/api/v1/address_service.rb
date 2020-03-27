@@ -5,24 +5,24 @@ module Api
       Address.find_by(id: params[:id]) if params[:id].present?
     end
 
-    def self.create(attrs = {})
+    def self.create(attrs)
       params = address_params(attrs)
-      return {code: 400, error: error} unless params.permitted?
+      raise 'paramtros não permitidos' unless params.permitted?
 
       create_address(params)
-    rescue Exception => error
-      return {code: 400, error: error.message}
+    rescue StandardError => e
+      { code: 400, error: e.message }
     end
 
     def self.update(address, attrs = {})
       params = address_params(attrs)
-      return {code: 400, error: error} unless params.permitted?
+      raise 'paramtros não permitidos' unless params.permitted?
 
       return address if update_address(address, params)
 
-      {code: 400, error: 'update not possible'}
-    rescue Exception => error
-      return {code: 400, error: error.message}
+      raise 'update not possible'
+    rescue StandardError => e
+      { code: 400, error: e.message }
     end
 
     private
