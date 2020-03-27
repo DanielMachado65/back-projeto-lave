@@ -16,7 +16,7 @@ module Api
 
       return user if update_user(user, params)
 
-      { code: 400, error: 'update not possible' }
+      raise 'update not possible'
     rescue StandardError => e
       { code: 400, error: e.message }
     end

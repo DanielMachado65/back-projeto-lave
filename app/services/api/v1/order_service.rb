@@ -5,34 +5,34 @@ module Api
       Order.find_by(id: params[:id]) if params[:id].present?
     end
 
-    def self.create(attrs, user)
+    def self.create(user, attrs)
       params = order_params(attrs)
-      return {code: 400, error: error} unless params.permitted?
+      raise 'paramtros não permitidos' unless params.permitted?
 
-      create_product(params, user)
+      create_product(user, params)
     rescue StandardError => e
-      {code: 400, error: e.message}
+      { code: 400, error: e.message }
     end
 
     def self.update(order, attrs = {})
       params = order_params(attrs)
-      return {code: 400, error: error} unless params.permitted?
+      raise 'paramtros não permitidos' unless params.permitted?
 
       return order if update_product(order, params)
 
-      {code: 400, error: 'update not possible'}
+      raise 'update not possible'
     rescue StandardError => e
-      {code: 400, error: e.message}
+      { code: 400, error: e.message }
     end
 
     private_class_method def self.order_params(params)
-      params.require(:order).permit(:deadline, :total, :payment_type, :establishment)
+      params.require(:order).permit(:deadline, :total,
+                                    :payment_type, :establishment)
     end
 
-    private_class_method def self.create_product(attrs, user)
+    private_class_method def self.create_product(user, attrs)
       @order = Order.new(attrs.except(:establishment))
 
-      binding.pry
       @order.user = user
       @order.address = user.address
       @order.establishment = Establishment.find_by(id: attrs[:establishment])
