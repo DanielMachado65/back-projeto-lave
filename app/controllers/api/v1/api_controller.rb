@@ -29,11 +29,11 @@ class Api::V1::ApiController < ActionController::Base
   end
 
   def api_bad_request(data = {})
-    render json: data, status: :not_acceptable
+    render json: {error: data}, status: :not_acceptable
   end
 
   def api_not_found(data = {})
-    render json: data, status: :not_found
+    render json: {error: data}, status: :not_found
   end
 
   def api_unauthorized(data = {})

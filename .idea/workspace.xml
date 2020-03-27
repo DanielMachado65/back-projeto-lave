@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c13ab910-9e66-48cb-8bba-7015b1b66920" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.rakeTasks" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.rakeTasks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/back-projeto-lave.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/back-projeto-lave.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/services/api/v1/product_service.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/api/v1/product_service.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,6 +110,8 @@
       <workItem from="1580784997505" duration="3943000" />
       <workItem from="1584449078524" duration="333000" />
       <workItem from="1584483769697" duration="4313000" />
+      <workItem from="1584729893165" duration="14000" />
+      <workItem from="1585178883046" duration="613000" />
     </task>
     <servers />
   </component>

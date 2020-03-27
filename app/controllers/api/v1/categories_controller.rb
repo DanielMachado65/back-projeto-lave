@@ -34,7 +34,8 @@ class Api::V1::CategoriesController < Api::V1::ApiController
   end
 
   private
-    def set_category
-      @category = Api::V1::CategoryService.find(params)
-    end
+
+  def set_category
+    @category = Api::V1::CategoryService.find(params)
+  end
 end

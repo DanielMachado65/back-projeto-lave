@@ -10,6 +10,9 @@ Rails.application.routes.draw do
       resources :establishments
       resources :products, expect: :index
 
+      # order
+      resources :order_statuses, only: %I[index show create]
+
       post '/login', to: 'sessions#login'
       post '/logout', to: 'sessions#destroy'
     end

@@ -10,8 +10,8 @@ module Api
       return {code: 400, error: error} unless params.permitted?
 
       create_category(params)
-    rescue Exception => error
-      return {code: 400, error: error.message}
+    rescue StandardError => e
+      {code: 400, error: e.message}
     end
 
     def self.update(category, attrs = {})
@@ -21,24 +21,22 @@ module Api
       return category if update_category(category, params)
 
       {code: 400, error: 'update not possible'}
-    rescue Exception => error
-      return {code: 400, error: error.message}
+    rescue StandardError => e
+      {code: 400, error: e.message}
     end
 
-    private
-
-    def self.category_params(params)
+    private_class_method def self.category_params(params)
       params.require(:category).permit(:name)
     end
 
-    def self.create_category(attrs)
+    private_class_method def self.create_category(attrs)
       @category = Category.create(attrs)
       return {code: 400, error: @category.errors.as_json} if @category.errors.present?
 
       @category
     end
 
-    def self.update_category(category, attrs)
+    private_class_method def self.update_category(category, attrs)
       category.update(attrs)
     end
   end
