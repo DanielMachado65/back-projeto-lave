@@ -10,8 +10,8 @@ module Api
       return {code: 400, error: error} unless params.permitted?
 
       create_product(params)
-    rescue Exception => error
-      return {code: 400, error: error.message}
+    rescue StandardError => e
+      {code: 400, error: e.message}
     end
 
     def self.update(product, attrs = {})
@@ -21,27 +21,26 @@ module Api
       return product if update_product(product, params)
 
       {code: 400, error: 'update not possible'}
-    rescue Exception => error
-      return {code: 400, error: error.message}
+    rescue StandardError => e
+      {code: 400, error: e.message}
     end
 
-    private
-
-    def self.product_params(params)
+    private_class_method def self.product_params(params)
       params.require(:product).permit(:is_active, :price, :name,
                                       :description, :category, :establishment)
     end
 
-    def self.create_product(attrs)
+    private_class_method def self.create_product(attrs)
       @product = Product.new(attrs.except(:category, :establishment))
       @product.category = Category.find_by(id: attrs[:category])
       @product.establishment = Establishment.find_by(id: attrs[:establishment])
 
       return @product if @product.save
+
       { code: 400, error: @product.errors.as_json}
     end
 
-    def self.update_product(category, attrs)
+    private_class_method def self.update_product(category, attrs)
       category.update(attrs)
     end
   end

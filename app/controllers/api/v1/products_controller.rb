@@ -5,7 +5,7 @@ class Api::V1::ProductsController < Api::V1::ApiController
   before_action :set_product, only: %I[show update destroy]
 
   def show
-    @product.nil? ? api_error('não foi encontrado') : api_success(@product)
+    @product.nil? ? api_not_found('não foi encontrado') : api_success(@product)
   end
 
   def create
@@ -16,7 +16,7 @@ class Api::V1::ProductsController < Api::V1::ApiController
   end
 
   def update
-    return api_error('não foi encontrado o estabelecimento') if @product.nil?
+    return api_error('não foi encontrado o produto') if @product.nil?
 
     product = Api::V1::ProductService.update(@product, params)
     return api_bad_request(product[:error]) if product[:code] == 400

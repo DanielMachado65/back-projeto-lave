@@ -10,7 +10,7 @@ class Api::V1::CategoriesController < Api::V1::ApiController
   end
 
   def show
-    @category.nil? ? api_error('ocorreu algum erro') : api_success(@category)
+    @category.nil? ? api_not_found('ocorreu algum erro') : api_success(@category)
   end
 
   def create
