@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Api
   # user service
   class V1::AddressService
@@ -25,20 +27,20 @@ module Api
       { code: 400, error: e.message }
     end
 
-    private
-
-    def self.address_params(params)
+    private_class_method def self.address_params(params)
       params.require(:address).permit(:zip_code, :street, :number, :city, :state, :country)
     end
 
-    def self.create_address(attrs)
+    private_class_method def self.create_address(attrs)
       @address = Address.create(attrs)
-      return {code: 400, error: @address.errors.as_json} if @address.errors.present?
+      if @address.errors.present?
+        return { code: 400, error: @address.errors.as_json }
+      end
 
       @address
     end
 
-    def self.update_address(category, attrs)
+    private_class_method def self.update_address(category, attrs)
       category.update(attrs)
     end
   end

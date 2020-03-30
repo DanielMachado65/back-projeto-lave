@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_09_210921) do
+ActiveRecord::Schema.define(version: 2020_10_09_210922) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "street"
@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(version: 2020_10_09_210921) do
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_order_lines_on_order_id"
     t.index ["product_id"], name: "index_order_lines_on_product_id"
+  end
+
+  create_table "order_status_logs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "order_status_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_status_logs_on_order_id"
+    t.index ["order_status_id"], name: "index_order_status_logs_on_order_status_id"
   end
 
   create_table "order_statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -106,6 +115,8 @@ ActiveRecord::Schema.define(version: 2020_10_09_210921) do
   add_foreign_key "establishments", "users"
   add_foreign_key "order_lines", "orders"
   add_foreign_key "order_lines", "products"
+  add_foreign_key "order_status_logs", "order_statuses"
+  add_foreign_key "order_status_logs", "orders"
   add_foreign_key "orders", "addresses"
   add_foreign_key "orders", "establishments"
   add_foreign_key "orders", "users"

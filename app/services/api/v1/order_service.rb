@@ -9,7 +9,7 @@ module Api
       params = order_params(attrs)
       raise 'paramtros não permitidos' unless params.permitted?
 
-      create_product(user, params)
+      create_order(user, params)
     rescue StandardError => e
       { code: 400, error: e.message }
     end
@@ -18,7 +18,7 @@ module Api
       params = order_params(attrs)
       raise 'paramtros não permitidos' unless params.permitted?
 
-      return order if update_product(order, params)
+      return order if order_product(order, params)
 
       raise 'update not possible'
     rescue StandardError => e
@@ -30,7 +30,7 @@ module Api
                                     :payment_type, :establishment)
     end
 
-    private_class_method def self.create_product(user, attrs)
+    private_class_method def self.create_order(user, attrs)
       @order = Order.new(attrs.except(:establishment))
 
       @order.user = user
@@ -42,7 +42,7 @@ module Api
       { code: 400, error: @order.errors.as_json}
     end
 
-    private_class_method def self.update_product(category, attrs)
+    private_class_method def self.order_product(category, attrs)
       category.update(attrs)
     end
   end
