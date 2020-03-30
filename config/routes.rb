@@ -14,8 +14,8 @@ Rails.application.routes.draw do
 
       # order
       resources :order_statuses, only: %I[index show create]
+      resources :order_lines, only: %I[create]
       resources :orders
-      resources :order_lines
 
       post '/login', to: 'sessions#login'
       post '/logout', to: 'sessions#destroy'
