@@ -5,6 +5,11 @@ module Api
       Order.find_by(id: params[:id]) if params[:id].present?
     end
 
+    def self.where(params)
+      where = Api::Query.filters(%I[id establishment_id], params)
+      Order.where(where)
+    end
+
     def self.create(user, attrs)
       params = order_params(attrs)
       raise 'paramtros não permitidos' unless params.permitted?

@@ -1,12 +1,17 @@
 class Api::V1::EstablishmentsController < Api::V1::ApiController
   skip_before_action :verify_authenticity_token
 
-  before_action :require_auth_token
+  before_action :require_auth_token, except: %i[orders]
   before_action :set_establishment, only: %I[show update destroy]
 
   def index
     @establishments = Establishment.all
     @establishments.nil? ? api_error('ocorreu algum erro') : api_success(@establishments)
+  end
+
+  def orders
+    orders = Api::V1::OrderService.where(establishment_id: params[:establishment_id])
+    api_return(orders: orders)
   end
 
   def show

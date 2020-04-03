@@ -10,15 +10,15 @@ class Api::V1::UsersController < Api::V1::ApiController
   end
 
   def create
-    api_return_success(Api::V1::UserService.update(current_user, params), true)
+    api_return(Api::V1::UserService.update(current_user, params), true)
   end
 
   def update
-    api_return_success(Api::V1::UserService.update(current_user, params))
+    api_return(Api::V1::UserService.update(current_user, params))
   end
 
   def address
-    api_return_success(Api::V1::UserService.update_address(current_user, params))
+    api_return(Api::V1::UserService.update_address(current_user, params))
   end
 
   def destroy

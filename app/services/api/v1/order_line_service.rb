@@ -4,7 +4,8 @@ module Api
   # user service
   class V1::OrderLineService
     def self.find(params)
-      OrderLine.find_by(id: params[:id]) if params[:id].present?
+      where = Api::Query.filters(%I[id order_id], params)
+      OrderLine.find_by(where)
     end
 
     def self.create(attrs)
