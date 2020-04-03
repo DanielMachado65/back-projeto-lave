@@ -11,7 +11,7 @@ module Api
       params = order_line_params(attrs)
       raise 'paramtros não permitidos' unless params.permitted?
 
-      create_order_line(params)
+      create_order_line(attrs[:order_id], params)
     rescue StandardError => e
       { code: 400, error: e.message }
     end
@@ -20,14 +20,14 @@ module Api
       params.require(:order_line).permit(:order_id, :product_id)
     end
 
-    private_class_method def self.create_order_line(attrs)
-      order = find_order(attrs[:order_id])
+    private_class_method def self.create_order_line(order_id, attrs)
+      order = find_order(order_id)
       return { code: 400, error: 'não foi encontrado pedido' } if order.nil?
 
-      product = find_order(attrs[:product_id])
-      return { code: 400, error: 'não foi encontrado pedido' } if product.nil?
+      product = find_product(attrs[:product_id])
+      return { code: 400, error: 'não foi encontrado produto' } if product.nil?
 
-      @order.establishment = OrderLine.new(order: order, product: product)
+      @order = OrderLine.new(order: order, product: product)
       return @order if @order.save
 
       { code: 400, error: @order.errors.as_json }

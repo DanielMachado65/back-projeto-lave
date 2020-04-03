@@ -8,7 +8,7 @@ class Order < ApplicationRecord
   has_many :order_status_logs
   has_many :order_status, through: :order_status_logs
 
-  has_many :order_lines. dependent: :destroy
+  has_many :order_lines, dependent: :destroy
   has_many :products, through: :order_lines
 
   after_create :create_order_status
