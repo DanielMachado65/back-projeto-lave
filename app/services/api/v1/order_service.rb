@@ -6,7 +6,7 @@ module Api
     end
 
     def self.where(params)
-      where = Api::Query.filters(%I[id establishment_id], params)
+      where = Api::Query.filters(%I[id user_id establishment_id], params)
       Order.where(where)
     end
 
