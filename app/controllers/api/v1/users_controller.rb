@@ -25,6 +25,10 @@ class Api::V1::UsersController < Api::V1::ApiController
     current_user.destroy ? api_success(data: :ok) : api_error(data: :error)
   end
 
+  def orders
+    api_return(orders: Api::V1::OrderService.where(user_id: current_user.id))
+  end
+
   private
 
   def set_user

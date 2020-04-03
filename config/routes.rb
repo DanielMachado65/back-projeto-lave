@@ -2,11 +2,14 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       # users
-      resources :users, only: %I[create destroy]
-      post '/user/address', to: 'users#address'
-      get '/user/orders', to: 'users#orders'
+      delete '/user', to: 'users#destroy'
+      post '/user', to: 'users#create'
       put '/user', to: 'users#update'
       get '/user', to: 'users#show'
+
+      # user features
+      post '/user/address', to: 'users#address'
+      get '/user/orders', to: 'users#orders'
 
       resources :categories
       resources :addresses
